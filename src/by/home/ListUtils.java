@@ -1,5 +1,7 @@
 package by.home;
 
+import static java.util.Arrays.copyOfRange;
+
 public class ListUtils {
     public static Node createList(int... values) {
         Node tail = null;
@@ -17,6 +19,16 @@ public class ListUtils {
             tail = tail.next;
         }
         return result + "*";
+
+    }
+
+    public static Node createListRec(int...values){
+        return values.length==0? null : new Node(values[0], createListRec(copyOfRange(values,1,values.length)));
+
+    }
+
+    public static String printListRec(Node tail){
+        return (tail==null)? "*" : tail.value+"->"+printListRec(tail.next);
 
     }
 }
